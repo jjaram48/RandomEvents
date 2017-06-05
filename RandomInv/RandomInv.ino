@@ -30,20 +30,24 @@ void setup() {
   
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(2, OUTPUT);  // Power Relay
-  pinMode(8, OUTPUT);  
+  pinMode(7, OUTPUT);  
+  pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
   pinMode(12, OUTPUT);
-  pinMode(13, OUTPUT);
 
-  for (int thisPin = 8; thisPin < 14; thisPin++) { //Sets all pins HIGH before the program starts
+  digitalWrite(2, HIGH);    //Power Relay init
+
+  for (int thisPin = 7; thisPin < 13; thisPin++) { //Sets all pins HIGH before the program starts
     digitalWrite(thisPin, HIGH);
   }
 }
 
 // the loop function runs over and over again forever
 void loop() {
+
+  digitalWrite(2, LOW);    //Power Relay enable
   
   pin=random(3,40);          // the range adds 'silences' working range is 9 to 13
   t = random(200,300);
@@ -53,6 +57,10 @@ void loop() {
   
   digitalWrite(pin, LOW);   // turn the LED on (HIGH is the voltage level)
   delay(t);                       // wait for a second
+
+    if (pin == 7) {
+    Serial.println("7! ON");
+  }
 
     if (pin == 8) {
     Serial.println("8! ON");
@@ -73,20 +81,20 @@ void loop() {
     if (pin == 12) {
     Serial.println("12! ON");
   }
-
-    if (pin == 13) {
-    Serial.println("13! ON");
-  }
   
   digitalWrite(pin, HIGH);    // turn the LED off by making the voltage LOW
   delay(t);
 
-  if (pin == 8) {
+  if (pin == 7) {
+    Serial.println("7! OFF");
+  }
+
+    if (pin == 8) {
     Serial.println("8! OFF");
   }
 
     if (pin == 9) {
-    Serial.println("! OFF");
+    Serial.println("9! OFF");
   }
 
     if (pin == 10) {
@@ -101,10 +109,8 @@ void loop() {
     Serial.println("12! OFF");
   }
 
-    if (pin == 13) {
-    Serial.println("13! OFF");
-  }
+  digitalWrite(2, HIGH);    //Power Relay disabled
   
-  
+  delay(100); 
 }
 
