@@ -25,22 +25,86 @@ int t = 300;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
+
+  Serial.begin(9600);      // open the serial port at 9600 bps:
+  
   // initialize digital pin LED_BUILTIN as an output.
+  pinMode(2, OUTPUT);  // Power Relay
   pinMode(8, OUTPUT);  
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
+
+  for (int thisPin = 8; thisPin < 14; thisPin++) { //Sets all pins HIGH before the program starts
+    digitalWrite(thisPin, HIGH);
+  }
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  pin=random(1,40);          // the range adds 'silences' working range is 9 to 13
-  t = random(150,300);
-  digitalWrite(pin, HIGH);   // turn the LED on (HIGH is the voltage level)
+  
+  pin=random(3,40);          // the range adds 'silences' working range is 9 to 13
+  t = random(200,300);
+  
+  Serial.println(pin);
+  Serial.println(t);
+  
+  digitalWrite(pin, LOW);   // turn the LED on (HIGH is the voltage level)
   delay(t);                       // wait for a second
-  digitalWrite(pin, LOW);    // turn the LED off by making the voltage LOW
-  delay(t);                    
+
+    if (pin == 8) {
+    Serial.println("8! ON");
+  }
+
+    if (pin == 9) {
+    Serial.println("9! ON");
+  }
+
+    if (pin == 10) {
+    Serial.println("10! ON");
+  }
+
+    if (pin == 11) {
+    Serial.println("11! ON");
+  }
+
+    if (pin == 12) {
+    Serial.println("12! ON");
+  }
+
+    if (pin == 13) {
+    Serial.println("13! ON");
+  }
+  
+  digitalWrite(pin, HIGH);    // turn the LED off by making the voltage LOW
+  delay(t);
+
+  if (pin == 8) {
+    Serial.println("8! OFF");
+  }
+
+    if (pin == 9) {
+    Serial.println("! OFF");
+  }
+
+    if (pin == 10) {
+    Serial.println("10! OFF");
+  }
+
+    if (pin == 11) {
+    Serial.println("11! OFF");
+  }
+
+    if (pin == 12) {
+    Serial.println("12! OFF");
+  }
+
+    if (pin == 13) {
+    Serial.println("13! OFF");
+  }
+  
+  
 }
 
