@@ -29,33 +29,30 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
 
-  digitalWrite(2, HIGH);    //Power Supply Relay enable
-  
-  pin = 7;          // the range adds 'silences' working range is 5 to 12 (for relays)
-  t = 100;
-  
-  Serial.println(pin);
-  Serial.println(t);
-  
-  digitalWrite(pin, LOW);   // turn the Relay on by setting the level LOW
+ 
+  for (int pin = 4; pin < 13; pin++) { //Sets all pins HIGH before the program starts
+    digitalWrite(pin, LOW);  
+    
+    digitalWrite(2, HIGH);    //Power Supply Relay enable
+    
+    t = 100;
+    
+    Serial.println(pin);
+    Serial.println(t);
+    
+    digitalWrite(pin, LOW);   // turn the Relay on by setting the level LOW
 
-    if (pin == 7) {
-    Serial.println("7! ON");
+    Serial.println(pin, "! ON");
+  
+    delay(t);                       // wait for the time it will be turned on (while it is activated)
+    
+    digitalWrite(pin, HIGH);    // turn the Relay off by making the voltage HIGH again
+  
+    Serial.println(pin, "! OFF");
+
+    digitalWrite(2, LOW);    //Power Supply Relay disabled
+
+      delay(1000); 
   }
-
-  delay(t);                       // wait for the time it will be turned on (while it is activated)
-  
-  digitalWrite(pin, HIGH);    // turn the Relay off by making the voltage HIGH again
-
-
-  if (pin == 7) {
-    Serial.println("7! OFF");
-  }
-
-//  delay(t);
-
-  digitalWrite(2, LOW);    //Power Supply Relay disabled
-  
-  delay(500); 
 }
 
