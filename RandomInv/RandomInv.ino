@@ -29,7 +29,11 @@ void setup() {
   Serial.begin(9600);      // open the serial port at 9600 bps:
   
   // initialize digital pin LED_BUILTIN as an output.
-  pinMode(2, OUTPUT);  // Power Relay
+  
+  pinMode(2, OUTPUT);  // Power Relay 
+ 
+  pinMode(5, OUTPUT);  
+  pinMode(6, OUTPUT);  
   pinMode(7, OUTPUT);  
   pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
@@ -49,7 +53,7 @@ void loop() {
 
   digitalWrite(2, HIGH);    //Power Relay enable
   
-  pin=random(3,40);          // the range adds 'silences' working range is 9 to 13
+  pin=random(4,100);          // the range adds 'silences' working range is 5 to 12 (for relays)
   t = random(400,600);
   
   Serial.println(pin);
