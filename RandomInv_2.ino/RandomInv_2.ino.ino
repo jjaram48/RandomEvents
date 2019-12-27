@@ -1,5 +1,5 @@
 
-int pin = 20;
+int pin = 9;
 int t = 300; 
 
 // the setup function runs once when you press reset or power the board
@@ -10,26 +10,31 @@ void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   
   pinMode(2, OUTPUT);  // Power Relay 
-  pinMode(3, OUTPUT);  
-  pinMode(4, OUTPUT);  
+ 
   pinMode(5, OUTPUT);  
-  pinMode(6, OUTPUT);
-  pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);  
+  pinMode(7, OUTPUT);  
   pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
 
-  for (int pin = 1; pin <= 9; pin++) { //Sets all pins HIGH before the program starts
-    digitalWrite(pin, HIGH);  
+  digitalWrite(2, HIGH);    //Power Relay init
+
+  for (int thisPin = 4; thisPin < 13; thisPin++) { //Sets all pins HIGH before the program starts
+    digitalWrite(thisPin, HIGH);
   }
-
 }
 
 // the loop function runs over and over again forever
 void loop() {
 
  
-  for (int pin = 1; pin <= 9; pin++) { //Sets all pins HIGH before the program starts
+  for (int pin = 4; pin < 13; pin++) {
     digitalWrite(pin, LOW);  
+    
+    digitalWrite(2, HIGH);    //Power Supply Relay enable
     
     t = 100;
     
@@ -46,6 +51,9 @@ void loop() {
   
     Serial.println(pin, "! OFF");
 
-    delay(1000); 
+    digitalWrite(2, LOW);    //Power Supply Relay disabled
+
+      delay(1000); 
   }
 }
+

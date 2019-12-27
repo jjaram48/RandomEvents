@@ -1,25 +1,3 @@
-/*
-  Blink
-  Turns on an LED on for one second, then off for one second, repeatedly.
-
-  Most Arduinos have an on-board LED you can control. On the UNO, MEGA and ZERO 
-  it is attached to digital pin 13, on MKR1000 on pin 6. LED_BUILTIN is set to
-  the correct LED pin independent of which board is used.
-  If you want to know what pin the on-board LED is connected to on your Arduino model, check
-  the Technical Specs of your board  at https://www.arduino.cc/en/Main/Products
-  
-  This example code is in the public domain.
-
-  modified 8 May 2014
-  by Scott Fitzgerald
-  
-  modified 2 Sep 2016
-  by Arturo Guadalupi
-  
-  modified 8 Sep 2016
-  by Colby Newman
-*/
-
 int pin = 9;
 int t = 300; 
 
@@ -43,7 +21,7 @@ void setup() {
 
   digitalWrite(2, HIGH);    //Power Relay init
 
-  for (int thisPin = 7; thisPin < 13; thisPin++) { //Sets all pins HIGH before the program starts
+  for (int thisPin = 5; thisPin < 13; thisPin++) { //Sets all pins HIGH before the program starts
     digitalWrite(thisPin, HIGH);
   }
 }
@@ -53,14 +31,22 @@ void loop() {
 
   digitalWrite(2, HIGH);    //Power Relay enable
   
-  pin=random(4,100);          // the range adds 'silences' working range is 5 to 12 (for relays)
-  t = random(400,600);
+  pin=random(4,1000);          // the range adds 'silences' working range is 5 to 12 (for relays)
+  t = random(300,500);
   
   Serial.println(pin);
   Serial.println(t);
   
   digitalWrite(pin, LOW);   // turn the LED on (HIGH is the voltage level)
   delay(t);                       // wait for a second
+
+    if (pin == 5) {
+    Serial.println("5! ON");
+  }
+
+    if (pin == 6) {
+    Serial.println("6! ON");
+  }
 
     if (pin == 7) {
     Serial.println("7! ON");
@@ -89,6 +75,14 @@ void loop() {
   digitalWrite(pin, HIGH);    // turn the LED off by making the voltage LOW
   delay(t);
 
+    if (pin == 5) {
+    Serial.println("5! OFF");
+  }
+
+    if (pin == 6) {
+    Serial.println("6! OFF");
+  }
+
   if (pin == 7) {
     Serial.println("7! OFF");
   }
@@ -114,7 +108,6 @@ void loop() {
   }
 
   digitalWrite(2, LOW);    //Power Relay disabled
-  
-  delay(500); 
+ 
 }
 
